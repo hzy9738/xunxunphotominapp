@@ -1,25 +1,25 @@
 import Taro from '@tarojs/taro'
 import {objectToString} from '@/common/utils'
-import {API_PRE} from "@/common/constant";
+import {API_PRE, PREVIEW_TOKEN, SESSION_ID} from "@/common/constant";
 
 const tools = {
   /**
    * 网络请求
    * @{param}   opts
    */
-  request: (opts) => {
-    let {url = '', params = {}, method = 'GET', ...request} = opts
+  request: (opts)  => {
+    let {url = '', data = {}, method = 'GET', ...request} = opts
     url = `${API_PRE}${url}`
     if (method === 'GET') {
-      url = `${url}?${objectToString(params)}`
+      url = `${url}?${objectToString(data)}`
     }
     return new Promise((resolve, reject) => {
       Taro.request({
-        url, params, method, ...request, header: {
+        url, data, method, ...request, header: {
           'Content-Type': 'application/json',
-          'X-Client-Hash': '5de22ed1',
+          'X-Client-Hash': Taro.getStorageSync(PREVIEW_TOKEN),
           'X-Client-Version': '211215-93b26f19-Linux-x86_64',
-          'X-Session-ID': '66b827aa32e1bf281ead1a76b56269e94f69c5f904024750',
+          'X-Session-ID': Taro.getStorageSync(SESSION_ID),
         }
       }).then((res) => {
         const {data} = res

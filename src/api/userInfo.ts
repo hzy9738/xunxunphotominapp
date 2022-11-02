@@ -41,8 +41,8 @@ export interface CalendarResponseDat123a {
 
 
 //日历列表
-export const getCalendarList213 = (data: CalendarRequestParam) => tools.request({
+export const getCalendarList213 = (data: CalendarRequestPa123ram) => tools.request({
   url: `albums`,
-  params: data
+  data
 })
 

@@ -2,7 +2,7 @@ import {View, Image} from '@tarojs/components'
 import {FC, useRouter} from "@tarojs/taro"
 import {useEffect, useState} from "react";
 import {getPhotoList, PhotoResponseData} from "@/api/photo";
-import {API_PRE} from "@/common/constant";
+import {API_PRE, GET_PREVIEW_TOKEN} from "@/common/constant";
 import {PageMeta, NavigationBar} from "tarojs-plugin-platform-miniprogram/dist/components";
 import './index.scss'
 import tools from "@/common/tools";
@@ -46,8 +46,8 @@ const PhotoIndex: FC = () => {
         url: `/pages/video/index`,
         data: {
           title: `${title}的视频`,
-          url:  `${API_PRE}videos/${videoFile?.Hash}/7d5f6201/avc`,
-          previewUrl: `${API_PRE}t/${imageFile?.Hash}/7d5f6201/tile_500`,
+          url:  `${API_PRE}videos/${videoFile?.Hash}/${GET_PREVIEW_TOKEN}/avc`,
+          previewUrl: `${API_PRE}t/${imageFile?.Hash}/${GET_PREVIEW_TOKEN}/tile_500`,
           percentage: item.Height / item.Width
         }
       })
@@ -56,7 +56,7 @@ const PhotoIndex: FC = () => {
         url: `/pages/image/index`,
         data: {
           title: `${title}的照片`,
-          url: `${API_PRE}t/${imageFile?.Hash}/7d5f6201/tile_500`,
+          url: `${API_PRE}t/${imageFile?.Hash}/${GET_PREVIEW_TOKEN}/tile_500`,
           percentage: item.Height / item.Width
         }
       })
