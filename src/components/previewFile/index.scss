@@ -1,0 +1,52 @@
+@import "~taro-ui/dist/style/components/curtain.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+
+.at-curtain__container {
+  width: 100%;
+  height: 100%;
+
+  .at-curtain__body {
+    width: 100%;
+    height: 100%;
+
+    .at-curtain__btn-close {
+      display: none;
+    }
+
+    .curtain-view {
+      background-color: #333333;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .curtain-video-view {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .curtain-video {
+          width: 100%;
+          height: 100%;
+
+          .taro-video-bar {
+            bottom: 100px;
+            background-color: rgba(0, 0, 0, 0);
+          }
+        }
+
+        .at-icon-close-circle {
+          position: absolute;
+          left: 35px;
+          bottom: 30px;
+          z-index: 2000;
+        }
+      }
+
+      .curtain-image {
+        width: 100%;
+      }
+    }
+  }
+}
+

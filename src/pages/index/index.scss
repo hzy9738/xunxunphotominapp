@@ -1,0 +1,17 @@
+@import "~taro-ui/dist/style/components/button.scss";
+
+.index-page {
+  .index-content {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    min-height: 400px;
+
+    .image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

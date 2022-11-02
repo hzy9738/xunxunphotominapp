@@ -1,0 +1,33 @@
+.calendar-page {
+  padding: 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .calendar-item {
+    padding-bottom: 16px;
+    width: 341px;
+    height: 447px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .calendar-image {
+      width: 341px;
+      height: 341px;
+    }
+
+    .calendar-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 341px;
+      height: 90px;
+      background-color: #c4c4c4;
+      color: #333;
+      font-size: 28px;
+    }
+  }
+
+
+}

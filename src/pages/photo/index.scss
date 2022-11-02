@@ -1,0 +1,17 @@
+.photo-page {
+  padding: 16px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .photo-item {
+    padding: 10px;
+    width: 222px;
+    height: 222px;
+
+    .photo-image {
+      width: 222px;
+      height: 222px;
+    }
+  }
+}
