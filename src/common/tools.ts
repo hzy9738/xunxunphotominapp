@@ -7,9 +7,9 @@ const tools = {
    * 网络请求
    * @{param}   opts
    */
-  request: (opts)  => {
+  request: (opts) => {
     let {url = '', data = {}, method = 'GET', ...request} = opts
-    url = `${API_PRE}${url}`
+    url = url.indexOf('http') === 0 ? url : `${API_PRE}${url}`
     if (method === 'GET') {
       url = `${url}?${objectToString(data)}`
     }
@@ -25,6 +25,13 @@ const tools = {
         const {data} = res
         if (res?.statusCode === 200) {
           resolve(data)
+        } else if (res?.statusCode == 401) {
+          Taro.removeStorageSync(PREVIEW_TOKEN)
+          Taro.removeStorageSync(SESSION_ID)
+          tools.navigateTo({
+            url: `/pages/index/index`,
+            data: {}
+          })
         } else {
           reject(res)
         }

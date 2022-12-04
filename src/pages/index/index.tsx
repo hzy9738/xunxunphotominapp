@@ -1,8 +1,7 @@
-import {View, Image } from '@tarojs/components'
+import {View, Image, Button} from '@tarojs/components'
 import Taro, {FC} from "@tarojs/taro"
 import './index.scss'
-import {AtButton} from "taro-ui";
-import {login, LoginResponseInfo} from "@/api/login";
+import {getPhone, login, LoginResponseInfo} from "@/api/login";
 import Tools from "@/common/tools";
 import {ERR_MES, PREVIEW_TOKEN, SESSION_ID} from "@/common/constant";
 import {useEffect} from "react";
@@ -19,19 +18,20 @@ const PageIndex: FC = () => {
   }, [])
 
 
-  const getUserInfo = () => {
-    Taro.getUserProfile({
-      lang: 'zh_CN',
-      desc: "获取你的昵称、头像、地区",
-      success: (res) => {
-        setLogin(res.userInfo.nickName)
-      },
-      fail: () => {
-        console.log('拒绝授权')
-        return
-      }
-    })
-  }
+  // const getUserInfo = () => {
+  //   Taro.getUserProfile({
+  //     lang: 'zh_CN',
+  //     desc: "获取你的昵称、头像、地区",
+  //     success: (res) => {
+  //       setLogin(res.userInfo.nickName)
+  //     },
+  //     fail: () => {
+  //       console.log('拒绝授权')
+  //       return
+  //     }
+  //   })
+  // }
+
 
   const setLogin = async (name: string) => {
     try {
@@ -54,24 +54,33 @@ const PageIndex: FC = () => {
     }
   }
 
-  // const getTel = (event) => {
-  //   console.log(event.detail)
-  //   Taro.login({
-  //     success: ({code}) => {
-  //       console.log(code)
-  //     },
-  //     fail: () => {
-  //
-  //     }
-  //   })
-  // }
+  const getTel = (event) => {
+    const {iv, encryptedData} = event.detail
+    Taro.login({
+      success: async res => {
+        const params = {
+          iv,
+          encryptedData,
+          code: res?.code,
+        }
+        // @ts-ignore
+        const {phoneNumber} = await getPhone(params)
+        if (phoneNumber) {
+          await setLogin(phoneNumber)
+        }
+      }
+    }).then(() => {
+
+    })
+  }
 
   return (
     <View className='index-page'>
       <View className='index-content'>
         <Image className='image' src={require('@/assets/images/xunxun.png')}/>
-        {/*<Button onGetPhoneNumber={getTel} openType='getPhoneNumber' type='primary'>授权登陆</Button>*/}
-        <AtButton type='primary' openType='getPhoneNumber' onClick={()=> getUserInfo()}>授权登陆</AtButton>
+        <Button onGetPhoneNumber={getTel} openType='getPhoneNumber' type='primary'>授权登陆</Button>
+        {/*<AtButton type='primary' openType='getPhoneNumber' onClick={()=> getUserInfo()}>授权登陆</AtButton>*/}
+        {/*<AtButton type='primary' openType='getPhoneNumber' onGetPhoneNumber={() => getTel()}>授权登陆</AtButton>*/}
       </View>
     </View>
   )

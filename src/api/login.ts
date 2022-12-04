@@ -6,7 +6,6 @@ type LoginParam = {
 }
 
 
-
 export interface Config {
   mode: string;
   name: string;
@@ -61,3 +60,16 @@ export const login = (data: LoginParam) => tools.request({
   method: 'POST'
 })
 
+
+export interface phoneParam {
+  code: string;
+  encryptedData: string;
+  iv: string;
+}
+
+// 获取手机号
+export const getPhone = (data: phoneParam) => tools.request({
+  url: `http://localhost:3000/api/getPhone`,
+  method: 'POST',
+  data
+})
