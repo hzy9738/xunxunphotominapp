@@ -79,8 +79,6 @@ const PageIndex: FC = () => {
       <View className='index-content'>
         <Image className='image' src={require('@/assets/images/xunxun.png')}/>
         <Button onGetPhoneNumber={getTel} openType='getPhoneNumber' type='primary'>授权登陆</Button>
-        {/*<AtButton type='primary' openType='getPhoneNumber' onClick={()=> getUserInfo()}>授权登陆</AtButton>*/}
-        {/*<AtButton type='primary' openType='getPhoneNumber' onGetPhoneNumber={() => getTel()}>授权登陆</AtButton>*/}
       </View>
     </View>
   )

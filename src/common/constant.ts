@@ -1,7 +1,7 @@
 import * as dayjs from 'dayjs'
 import Taro from "@tarojs/taro";
 
-export const API_PRE = "https://nas.yixun.run/api/v1/"
+export const API_PRE = "https://nas.yixun.run/"
 
 export const ERR_MES = '网络开了小差，请稍后重试～'
 

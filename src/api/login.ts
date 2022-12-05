@@ -55,7 +55,7 @@ export interface LoginResponseInfo {
 
 //登录
 export const login = (data: LoginParam) => tools.request({
-  url: `session`,
+  url: `api/v1/session`,
   data,
   method: 'POST'
 })
@@ -69,7 +69,7 @@ export interface phoneParam {
 
 // 获取手机号
 export const getPhone = (data: phoneParam) => tools.request({
-  url: `http://localhost:3000/api/getPhone`,
+  url: `node/api/getPhone`,
   method: 'POST',
   data
 })

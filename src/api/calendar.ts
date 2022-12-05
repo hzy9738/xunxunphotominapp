@@ -42,7 +42,7 @@ export interface CalendarResponseData {
 
 //日历列表
 export const getCalendarList = (data: CalendarRequestParam) => tools.request({
-  url: `albums`,
+  url: `api/v1/albums`,
   data
 })
 
