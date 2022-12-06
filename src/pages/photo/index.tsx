@@ -2,12 +2,13 @@ import {View, Image} from '@tarojs/components'
 import {FC, useRouter} from "@tarojs/taro"
 import {useEffect, useState} from "react";
 import {getPhotoList, PhotoResponseData} from "@/api/photo";
-import {API_PRE, GET_PREVIEW_TOKEN} from "@/common/constant";
+import {API_PRE} from "@/common/constant";
 import {PageMeta, NavigationBar} from "tarojs-plugin-platform-miniprogram/dist/components";
 import './index.scss'
 import tools from "@/common/tools";
 import dayjs from "dayjs";
 import {weekDay} from "@/common/utils";
+import useSession from "@/hooks/useSession";
 
 
 const PhotoIndex: FC = () => {
@@ -19,6 +20,7 @@ const PhotoIndex: FC = () => {
   const router = useRouter();
   const {uid, year, month} = router.params
 
+  const {previewToken} = useSession()
   const getPhotoApi = async () => {
     const params = {
       count: 60,
@@ -46,8 +48,8 @@ const PhotoIndex: FC = () => {
         url: `/pages/video/index`,
         data: {
           title: `${title}的视频`,
-          url:  `${API_PRE}videos/${videoFile?.Hash}/${GET_PREVIEW_TOKEN}/avc`,
-          previewUrl: `${API_PRE}t/${imageFile?.Hash}/${GET_PREVIEW_TOKEN}/tile_500`,
+          url:  `${API_PRE}/api/v1/videos/${videoFile?.Hash}/${previewToken}/avc`,
+          previewUrl: `${API_PRE}/api/v1/t/${imageFile?.Hash}/${previewToken}/tile_500`,
           percentage: item.Height / item.Width
         }
       })
@@ -56,7 +58,7 @@ const PhotoIndex: FC = () => {
         url: `/pages/image/index`,
         data: {
           title: `${title}的照片`,
-          url: `${API_PRE}t/${imageFile?.Hash}/${GET_PREVIEW_TOKEN}/tile_500`,
+          url: `${API_PRE}/api/v1/t/${imageFile?.Hash}/${previewToken}/tile_500`,
           percentage: item.Height / item.Width
         }
       })
@@ -75,7 +77,7 @@ const PhotoIndex: FC = () => {
             <View className='photo-item' key={item.Hash} onClick={() => onItemClick(item)}>
               <Image
                 className='photo-image'
-                src={`${API_PRE}t/${item.Hash}/7d5f6201/tile_500`}
+                src={`${API_PRE}/api/v1/t/${item.Hash}/7d5f6201/tile_500`}
               />
             </View>
           ))

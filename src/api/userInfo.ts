@@ -42,7 +42,7 @@ export interface CalendarResponseDat123a {
 
 //日历列表
 export const getCalendarList213 = (data: CalendarRequestPa123ram) => tools.request({
-  url: `api/v1/albums`,
+  url: `/api/v1/albums`,
   data
 })
 

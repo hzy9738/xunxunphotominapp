@@ -3,11 +3,14 @@ import {FC} from "@tarojs/taro"
 import './index.scss'
 import {useEffect, useState} from "react";
 import {CalendarResponseData, getCalendarList} from "@/api/calendar";
-import {API_PRE, GET_PREVIEW_TOKEN} from "@/common/constant";
+import {API_PRE} from "@/common/constant";
 import Tools from "@/common/tools";
+import useSession from "@/hooks/useSession";
 
 
 const CalendarIndex: FC = () => {
+
+  const {previewToken} = useSession()
   const [calendarList, setCalendarList] = useState<CalendarResponseData[]>([])
   useEffect(() => {
     getCalendarApi()
@@ -44,7 +47,7 @@ const CalendarIndex: FC = () => {
           <View className='calendar-item' key={item.UID} onClick={() => toPhotoPage(item)}>
             <Image
               className='calendar-image'
-              src={`${API_PRE}t/${item.Thumb}/${GET_PREVIEW_TOKEN}/tile_500`}
+              src={`${API_PRE}/api/v1/t/${item.Thumb}/${previewToken}/tile_500`}
             />
             <View className='calendar-text'>
               <Text>{item.Year}年{item.Month}月</Text>

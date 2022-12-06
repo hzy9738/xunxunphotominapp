@@ -108,7 +108,7 @@ export interface FileType {
 
 //日历列表
 export const getPhotoList = (data: PhotoRequestParam) => tools.request({
-  url: `api/v1/photos`,
+  url: `/api/v1/photos`,
   data
 })
 

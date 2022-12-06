@@ -1,7 +1,7 @@
 import {View, Image, Button} from '@tarojs/components'
 import Taro, {FC} from "@tarojs/taro"
 import './index.scss'
-import {getPhone, login, LoginResponseInfo} from "@/api/login";
+import {login, LoginParam, LoginResponseInfo} from "@/api/login";
 import Tools from "@/common/tools";
 import {ERR_MES, PREVIEW_TOKEN, SESSION_ID} from "@/common/constant";
 import {useEffect} from "react";
@@ -16,7 +16,6 @@ const PageIndex: FC = () => {
       })
     }
   }, [])
-
 
   // const getUserInfo = () => {
   //   Taro.getUserProfile({
@@ -33,15 +32,12 @@ const PageIndex: FC = () => {
   // }
 
 
-  const setLogin = async (name: string) => {
+  const setLogin = async (param: LoginParam) => {
     try {
-      const data = await login({
-        username: name,
-        password: 'hzy999wt'
-      }) as LoginResponseInfo
-      if (data?.config?.previewToken) {
-        Taro.setStorageSync(PREVIEW_TOKEN, data?.config?.previewToken)
-        Taro.setStorageSync(SESSION_ID, data?.id)
+      const data = await login(param) as LoginResponseInfo
+      if (data?.previewToken && data?.sessionId) {
+        Taro.setStorageSync(PREVIEW_TOKEN, data.previewToken)
+        Taro.setStorageSync(SESSION_ID, data.sessionId)
         Tools.showToast("授权成功^_^")
         setTimeout(() => {
           Taro.switchTab({
@@ -63,11 +59,7 @@ const PageIndex: FC = () => {
           encryptedData,
           code: res?.code,
         }
-        // @ts-ignore
-        const {phoneNumber} = await getPhone(params)
-        if (phoneNumber) {
-          await setLogin(phoneNumber)
-        }
+        await setLogin(params)
       }
     }).then(() => {
 

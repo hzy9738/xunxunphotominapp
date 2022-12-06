@@ -18,7 +18,6 @@ const tools = {
         url, data, method, ...request, header: {
           'Content-Type': 'application/json',
           'X-Client-Hash': Taro.getStorageSync(PREVIEW_TOKEN),
-          'X-Client-Version': '211215-93b26f19-Linux-x86_64',
           'X-Session-ID': Taro.getStorageSync(SESSION_ID),
         }
       }).then((res) => {
