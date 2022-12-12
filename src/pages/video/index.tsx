@@ -13,10 +13,10 @@ const VideoIndex: FC = () => {
   }
 
   const onPlay = () => {
-    let videoContext = Taro.createVideoContext('video')
-    videoContext.requestFullScreen({
-      direction: heightPx > 1 ? 0 : 90
-    })
+    // let videoContext = Taro.createVideoContext('video')
+    // videoContext.requestFullScreen({
+    //   direction: heightPx > 1 ? 0 : 90
+    // })
   }
 
   const onError = () => {

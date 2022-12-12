@@ -6,6 +6,11 @@ import {CalendarResponseData, getCalendarList} from "@/api/calendar";
 import {API_PRE} from "@/common/constant";
 import Tools from "@/common/tools";
 import useSession from "@/hooks/useSession";
+import {
+  NavigationBar,
+  PageMeta
+}  from "tarojs-plugin-platform-miniprogram/dist/components";
+import UploadFileButton from "@/components/uploadFileButton";
 
 
 const CalendarIndex: FC = () => {
@@ -41,21 +46,29 @@ const CalendarIndex: FC = () => {
   }
 
   return (
-    <View className='calendar-page'>
-      {
-        calendarList.map(item => (
-          <View className='calendar-item' key={item.UID} onClick={() => toPhotoPage(item)}>
-            <Image
-              className='calendar-image'
-              src={`${API_PRE}/api/v1/t/${item.Thumb}/${previewToken}/tile_500`}
-            />
-            <View className='calendar-text'>
-              <Text>{item.Year}年{item.Month}月</Text>
-            </View>
-          </View>
-        ))
-      }
-    </View>
+    <>
+      <PageMeta backgroundTextStyle='dark'>
+        <NavigationBar title={'日历'}  />
+      </PageMeta>
+      <View className='calendar-container'>
+        <UploadFileButton className='upload-icon'/>
+        <View className='calendar-page'>
+          {
+            calendarList.map(item => (
+              <View className='calendar-item' key={item.UID} onClick={() => toPhotoPage(item)}>
+                <Image
+                  className='calendar-image'
+                  src={`${API_PRE}/api/v1/t/${item.Thumb}/${previewToken}/tile_500`}
+                />
+                <View className='calendar-text'>
+                  <Text>{item.Year}年{item.Month}月</Text>
+                </View>
+              </View>
+            ))
+          }
+        </View>
+      </View>
+    </>
   )
 }
 

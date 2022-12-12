@@ -75,9 +75,12 @@ const PhotoIndex: FC = () => {
         {
           photoList.map(item => (
             <View className='photo-item' key={item.Hash} onClick={() => onItemClick(item)}>
+              {
+                item.Type === 'video' ? <View className='at-icon at-icon-play' /> : <></>
+              }
               <Image
                 className='photo-image'
-                src={`${API_PRE}/api/v1/t/${item.Hash}/7d5f6201/tile_500`}
+                src={`${API_PRE}/api/v1/t/${item.Hash}/${previewToken}/tile_500`}
               />
             </View>
           ))

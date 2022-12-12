@@ -5,7 +5,7 @@ import './index.scss'
 import {
   NavigationBar,
   PageMeta
-} from "_tarojs-plugin-platform-miniprogram@0.1.1@tarojs-plugin-platform-miniprogram/dist/components";
+} from "tarojs-plugin-platform-miniprogram/dist/components";
 
 const ImageIndex: FC = () => {
   const router = useRouter();

@@ -1,13 +1,10 @@
 import {useStoreActions, useStoreState} from "@/stores";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Taro from "@tarojs/taro";
 import {PREVIEW_TOKEN, SESSION_ID} from "@/common/constant";
 
 
 const useSession = () => {
-  const [sessionId, setSessionId] = useState('')
-  const [previewToken, setPreviewToken] = useState('')
-
   const sessionValue = useStoreState((state) => state.session.value)
   const setSession = useStoreActions((state) => state.session.setSession)
 
@@ -18,12 +15,10 @@ const useSession = () => {
       setSession({
         sessionId, previewToken
       })
-      setSessionId(sessionId)
-      setPreviewToken(previewToken)
     }
-  }, [])
+  })
   return {
-    sessionId, previewToken
+    sessionId: sessionValue.sessionId, previewToken:sessionValue.previewToken
   }
 }
 export default useSession

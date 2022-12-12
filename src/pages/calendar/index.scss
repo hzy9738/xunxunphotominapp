@@ -1,33 +1,43 @@
-.calendar-page {
-  padding: 16px 10px;
-  display: flex;
-  flex-wrap: wrap;
+.calendar-container {
+  position: relative;
 
-  .calendar-item {
-    padding-bottom: 16px;
-    width: 341px;
-    height: 447px;
+  .upload-icon {
+    position: fixed;
+    right: 25px;
+    top: calc(100vh - 180px);
+  }
+
+  .calendar-page {
+    padding: 16px 10px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 16px;
+    flex-wrap: wrap;
 
-    .calendar-image {
+    .calendar-item {
+      padding-bottom: 16px;
       width: 341px;
-      height: 341px;
-    }
-
-    .calendar-text {
+      height: 447px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      width: 341px;
-      height: 90px;
-      background-color: #c4c4c4;
-      color: #333;
-      font-size: 28px;
+      margin-left: 16px;
+
+      .calendar-image {
+        width: 341px;
+        height: 341px;
+      }
+
+      .calendar-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 341px;
+        height: 90px;
+        background-color: #c4c4c4;
+        color: #333;
+        font-size: 28px;
+      }
     }
   }
 
-
 }
+
