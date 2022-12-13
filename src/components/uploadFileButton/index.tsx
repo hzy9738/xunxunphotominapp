@@ -17,6 +17,7 @@ const UploadFileButton: FC<UploadFileButtonProps> = (props) => {
       count: 9,
       mediaType: ['image', 'video'],
       sourceType: ['album', 'camera'],
+      sizeType: ['original','compressed'],
       maxDuration: 30,
       camera: 'back',
       success: (res) => {
